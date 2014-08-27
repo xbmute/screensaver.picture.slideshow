@@ -6,7 +6,7 @@ __addonid__  = sys.modules[ '__main__' ].__addonid__
 __language__ = sys.modules[ '__main__' ].__language__
 
 # supported image types by the screensaver
-IMAGE_TYPES = ('.jpg', '.jpeg', '.png', '.tif', '.tiff', '.gif', '.pcx', '.bmp', '.tga', '.ico')
+IMAGE_TYPES = ('.jpg', '.jpeg', '.png', '.tif', '.tiff', '.gif', '.pcx', '.bmp', '.tga', '.ico', '.nef')
 CACHEFOLDER = xbmc.translatePath('special://profile/addon_data/%s' % __addonid__).decode('utf-8')
 CACHEFILE   = os.path.join(CACHEFOLDER, '%s')
 
