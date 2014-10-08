@@ -143,7 +143,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                 if self.slideshow_type == '2' and self.slideshow_cache == 'true' and not xbmcvfs.exists(img[0]):
                     continue
                 # add image to gui
-                cur_img.setImage(img[0])
+                cur_img.setImage(img[0],False)
                 # give xbmc some time to load the image
                 if not self.startup:
                     xbmc.sleep(1000)

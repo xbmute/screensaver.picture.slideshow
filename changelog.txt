@@ -1,3 +1,6 @@
+v2.0.3
+- more screen space for image filename
+
 v2.0.2
 - change name to screensaver.picture.slideshow
 
