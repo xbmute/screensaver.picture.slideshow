@@ -17,7 +17,6 @@
 					<height>720</height>
 					<aspectratio>keep</aspectratio>
 					<fadetime>0</fadetime>
-					<colordiffuse>$INFO[Window.Property(SlideView.Dim)]</colordiffuse>
 					<animation type="Conditional" condition="StringCompare(Window.Property(SlideView.Slide1),0)" reversible="false">
 						<effect type="slide" tween="cubic" easing="inout" start="1280,0" end="0,0" time="500"/>
 					</animation>
@@ -37,7 +36,6 @@
 					<height>720</height>
 					<aspectratio>keep</aspectratio>
 					<fadetime>0</fadetime>
-					<colordiffuse>$INFO[Window.Property(SlideView.Dim)]</colordiffuse>
 					<animation type="Conditional" condition="StringCompare(Window.Property(SlideView.Slide2),0)" reversible="false">
 						<effect type="slide" tween="cubic" easing="inout" start="1280,0" end="0,0" time="500"/>
 					</animation>
@@ -57,7 +55,6 @@
 					<height>720</height>
 					<aspectratio>scale</aspectratio>
 					<fadetime>0</fadetime>
-					<colordiffuse>$INFO[Window.Property(SlideView.Dim)]</colordiffuse>
 					<animation type="Conditional" condition="StringCompare(Window.Property(SlideView.Slide1),0)" reversible="false">
 						<effect type="slide" tween="cubic" easing="inout" start="1280,0" end="0,0" time="500"/>
 					</animation>
@@ -77,7 +74,6 @@
 					<height>720</height>
 					<aspectratio>scale</aspectratio>
 					<fadetime>0</fadetime>
-					<colordiffuse>$INFO[Window.Property(SlideView.Dim)]</colordiffuse>
 					<animation type="Conditional" condition="StringCompare(Window.Property(SlideView.Slide2),0)" reversible="false">
 						<effect type="slide" tween="cubic" easing="inout" start="1280,0" end="0,0" time="500"/>
 					</animation>
@@ -212,8 +208,7 @@
 			<height>461</height>
 			<aspectratio>keep</aspectratio>
 			<fadetime>0</fadetime>
-                        <texture>splash.png</texture>
-			<colordiffuse>$INFO[Window.Property(SlideView.Dim)]</colordiffuse>
+                        <texture>screensaver-splash.png</texture>
 			<animation effect="rotate" end="-360" center="auto" time="7000" loop="true" reversible="false" condition="True">Conditional</animation>
 			<animation type="WindowOpen">
 				<effect type="fade" start="0" end="100" time="1000" delay="500"/>
@@ -221,6 +216,14 @@
 			<animation type="Conditional" condition="StringCompare(Window.Property(SlideView.Splash),hide)">
 				<effect type="fade" start="100" end="0" time="500"/>
 			</animation>
+		</control>
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+                        <texture>screensaver-black.png</texture>
+			<colordiffuse>$INFO[Window.Property(SlideView.Dim)]</colordiffuse>
 		</control>
 	</controls>
 </window>

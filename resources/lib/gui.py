@@ -100,7 +100,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         self.slideshow_effect = __addon__.getSetting('effect')
         self.slideshow_time   = int(__addon__.getSetting('time'))
         # convert float to hex value usable by the skin
-        self.slideshow_dim    = hex(int('%.0f' % (float(__addon__.getSetting('level')) * 2.55)))[2:] + 'ffffff'
+        self.slideshow_dim    = hex(int('%.0f' % (float(100 - int(__addon__.getSetting('level'))) * 2.55)))[2:] + 'ffffff'
         self.slideshow_random = __addon__.getSetting('random')
         self.slideshow_scale  = __addon__.getSetting('scale')
         self.slideshow_name   = __addon__.getSetting('label')
