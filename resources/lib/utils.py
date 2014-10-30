@@ -63,5 +63,5 @@ def walk(path):
                     images.append([os.path.join(folder,item), ''])
             for item in dirs:
                 # recursively scan all subfolders
-                images += walk(os.path.join(folder,item))
+                images += walk(os.path.join(folder,item,'')) # make sure paths end with a slash
     return images
