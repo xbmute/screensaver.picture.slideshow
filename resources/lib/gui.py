@@ -261,8 +261,9 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                 # slideshow time in secs (we already slept for 1 second)
                 count = self.slideshow_time - 1
                 # display the image for the specified amount of time
-                while (not self.Monitor.waitForAbort(1)) and (not self.stop) and count > 0:
+                while (not self.Monitor.abortRequested()) and (not self.stop) and count > 0:
                     count -= 1
+                    xbmc.sleep(1000)
                 # break out of the for loop if onScreensaverDeactivated is called
                 if  self.stop or self.Monitor.abortRequested():
                     break
