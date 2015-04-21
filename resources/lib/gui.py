@@ -400,9 +400,9 @@ class img_update(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        while (not xbmc.Monitor().abortRequested()):
-            # update the image list every 30 minutes
-            xbmc.sleep(1800000)
+        while True:
+            if xbmc.Monitor().waitForAbort(1800):
+                break
             self._get_items()
 
 class MyMonitor(xbmc.Monitor):
