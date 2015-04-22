@@ -401,7 +401,7 @@ class img_update(threading.Thread):
 
     def run(self):
         while True:
-            if xbmc.Monitor().waitForAbort(1800):
+            if xbmc.Monitor().waitForAbort(1800) or xbmc.Monitor().onScreensaverDeactivated():
                 break
             self._get_items()
 
