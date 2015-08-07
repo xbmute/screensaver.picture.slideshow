@@ -416,12 +416,22 @@ class img_update(threading.Thread):
     def __init__( self, *args, **kwargs ):
         self._get_items =  kwargs['data']
         threading.Thread.__init__(self)
+        self.stop = False
+        self.Monitor = MyMonitor(action = self._exit)
 
     def run(self):
-        while True:
-            if xbmc.Monitor().waitForAbort(1800) or xbmc.Monitor().onScreensaverDeactivated():
-                break
+        while (not self.Monitor.abortRequested()) and (not self.stop):
+            count = 0
+            while count != 3800:
+                xbmc.sleep(1000)
+                count += 1
+                if self.Monitor.abortRequested() or self.stop:
+                    break
             self._get_items()
+
+    def _exit(self):
+        # exit when onScreensaverDeactivated gets called
+        self.stop = True
 
 class MyMonitor(xbmc.Monitor):
     def __init__( self, *args, **kwargs ):
