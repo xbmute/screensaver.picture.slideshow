@@ -1,3 +1,6 @@
+v2.1.7
+- move music info to bottom
+
 v2.1.6
 - cosmetics
 
