@@ -239,7 +239,9 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                     self.datelabel.setVisible(False)
                 # display iptc data if we have any
                 if iptc_ti or iptc_de or iptc_ke:
-                    self.textbox.setText(title + '[CR]' + description + '[CR]' + keywords)
+                    self.textbox.setText(
+                        '[CR]'.join([title, keywords] if title == description
+                                    else [title, description, keywords]))
                     self.textbox.setVisible(True)
                 else:
                     self.textbox.setVisible(False)
