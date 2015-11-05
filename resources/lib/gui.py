@@ -76,7 +76,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         speedup = 1 / float(effectslowdown)
         self.adj_time = int(101000 * speedup)
         # get the images
-        self._get_items(True)
+        self._get_items()
         if self.items:
             # hide startup splash
             self._set_prop('Splash', 'hide')
@@ -107,7 +107,6 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         self.slideshow_date   = __addon__.getSetting('date')
         self.slideshow_iptc   = __addon__.getSetting('iptc')
         self.slideshow_music  = __addon__.getSetting('music')
-        self.slideshow_cache  = __addon__.getSetting('cache')
         self.slideshow_bg     = __addon__.getSetting('background')
         # select which image controls from the xml we are going to use
         if self.slideshow_scale == 'false':
@@ -149,7 +148,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
             # iterate through all the images
             for img in items:
                 # cache file may be outdated
-                if self.slideshow_type == '2' and self.slideshow_cache == 'true' and not xbmcvfs.exists(img[0]):
+                if self.slideshow_type == '2' and not xbmcvfs.exists(img[0]):
                     continue
                 # add image to gui
                 cur_img.setImage(img[0],False)
@@ -298,16 +297,13 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                     break
             items = copy.deepcopy(self.items)
 
-    def _get_items(self, startup):
+    def _get_items(self):
 	# check if we have an image folder, else fallback to video fanart
         if self.slideshow_type == '2':
-            if self.slideshow_cache == 'true':
-                hexfile = checksum(self.slideshow_path) # check if path has changed, so we can create a new cache at startup
-                if (not xbmcvfs.exists(CACHEFILE % hexfile)) or (not startup): # create a new cache if no cache exits or during the background scan
-                    create_cache(startup)
-                self.items = self._read_cache(hexfile)
-            else:
-                self.items = walk(self.slideshow_path)
+            hexfile = checksum(self.slideshow_path) # check if path has changed, so we can create a new cache at startup
+            if (not xbmcvfs.exists(CACHEFILE % hexfile)): # create a new cache if no cache exits or during the background scan
+                create_cache()
+            self.items = self._read_cache(hexfile)
             if not self.items:
                 self.slideshow_type = '0'
 	# video fanart
@@ -429,7 +425,7 @@ class img_update(threading.Thread):
                 count += 1
                 if self.Monitor.abortRequested() or self.stop:
                     return
-            self._get_items(False)
+            self._get_items()
 
     def _exit(self):
         # exit when onScreensaverDeactivated gets called

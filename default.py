@@ -11,20 +11,8 @@ sys.path.append(__resource__)
 
 from utils import *
 
-def _parse_argv():
-    try:
-        params = dict( arg.split( "=" ) for arg in sys.argv[ 1 ].split( "&" ) )
-    except:
-        params = {}
-    cache = params.get( "cache", "" )
-    return cache
-
 if __name__ == '__main__':
-    opts = _parse_argv()
-    if opts:
-        create_cache(True)
-    else:
-        import gui
-        screensaver_gui = gui.Screensaver('script-python-slideshow.xml', __cwd__, 'default')
-        screensaver_gui.doModal()
-        del screensaver_gui
+    import gui
+    screensaver_gui = gui.Screensaver('script-python-slideshow.xml', __cwd__, 'default')
+    screensaver_gui.doModal()
+    del screensaver_gui

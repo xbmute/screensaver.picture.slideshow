@@ -19,15 +19,19 @@ def log(txt):
 def checksum(path):
     return hashlib.md5(path).hexdigest()
 
-def create_cache(startup):
+def create_cache():
     slideshow_type = __addon__.getSetting('type')
     if slideshow_type == '2':
-        if startup: # don't notify during background scan
-            xbmc.executebuiltin((u'Notification(%s,%s,%i)' % (__addonid__, __language__(30019), 5000)).encode('utf-8', 'ignore'))
         path = __addon__.getSetting('path')
         images = walk(path)
         if not xbmcvfs.exists(CACHEFOLDER):
             xbmcvfs.mkdir(CACHEFOLDER)
+        # remove old cache files
+        dirs, files = xbmcvfs.listdir(CACHEFOLDER)
+        for item in files:
+            if item != 'settings.xml':
+                xbmcvfs.delete(item)
+        # create index file
         hexfile = checksum(path)
         try:
             cache = xbmcvfs.File(CACHEFILE % hexfile, 'w')
@@ -35,10 +39,6 @@ def create_cache(startup):
             cache.close()
         except:
             log('failed to save cachefile')
-        if startup:
-            xbmc.executebuiltin((u'Notification(%s,%s,%i)' % (__addonid__, __language__(30020), 5000)).encode('utf-8', 'ignore'))
-    else:
-        xbmc.executebuiltin((u'Notification(%s,%s,%i)' % (__addonid__, __language__(30028), 5000)).encode('utf-8', 'ignore'))
 
 def walk(path):
     images = []
