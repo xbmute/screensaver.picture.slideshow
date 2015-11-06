@@ -19,26 +19,23 @@ def log(txt):
 def checksum(path):
     return hashlib.md5(path).hexdigest()
 
-def create_cache():
-    slideshow_type = __addon__.getSetting('type')
-    if slideshow_type == '2':
-        path = __addon__.getSetting('path')
-        images = walk(path)
-        if not xbmcvfs.exists(CACHEFOLDER):
-            xbmcvfs.mkdir(CACHEFOLDER)
-        # remove old cache files
-        dirs, files = xbmcvfs.listdir(CACHEFOLDER)
-        for item in files:
-            if item != 'settings.xml':
-                xbmcvfs.delete(item)
-        # create index file
-        hexfile = checksum(path)
-        try:
-            cache = xbmcvfs.File(CACHEFILE % hexfile, 'w')
-            cache.write(str(images))
-            cache.close()
-        except:
-            log('failed to save cachefile')
+def create_cache(path, hexfile):
+    images = walk(path)
+    if not xbmcvfs.exists(CACHEFOLDER):
+        xbmcvfs.mkdir(CACHEFOLDER)
+    # remove old cache files
+    dirs, files = xbmcvfs.listdir(CACHEFOLDER)
+    for item in files:
+        print item
+        if item != 'settings.xml':
+            xbmcvfs.delete(os.path.join(CACHEFOLDER,item))
+    # create index file
+    try:
+        cache = xbmcvfs.File(CACHEFILE % hexfile, 'w')
+        cache.write(str(images))
+        cache.close()
+    except:
+        log('failed to save cachefile')
 
 def walk(path):
     images = []

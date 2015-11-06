@@ -302,7 +302,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         if self.slideshow_type == '2':
             hexfile = checksum(self.slideshow_path) # check if path has changed, so we can create a new cache at startup
             if (not xbmcvfs.exists(CACHEFILE % hexfile)): # create a new cache if no cache exits or during the background scan
-                create_cache()
+                create_cache(self.slideshow_path, hexfile)
             self.items = self._read_cache(hexfile)
             if not self.items:
                 self.slideshow_type = '0'
