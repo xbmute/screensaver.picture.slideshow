@@ -419,13 +419,14 @@ class img_update(threading.Thread):
 
     def run(self):
         while (not self.Monitor.abortRequested()) and (not self.stop):
+            # create a fresh index as quickly as possible after slidshow started
+            self._get_items()
             count = 0
             while count != 3600: # check for new images every hour
                 xbmc.sleep(1000)
                 count += 1
                 if self.Monitor.abortRequested() or self.stop:
                     return
-            self._get_items()
 
     def _exit(self):
         # exit when onScreensaverDeactivated gets called
