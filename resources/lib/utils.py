@@ -1,5 +1,5 @@
 import sys, os, re, urllib, hashlib
-import xbmc, xbmcvfs
+import xbmc, xbmcvfs, xbmcaddon
 
 ADDON    = sys.modules[ '__main__' ].ADDON
 ADDONID  = sys.modules[ '__main__' ].ADDONID
