@@ -7,7 +7,7 @@ LANGUAGE = sys.modules[ '__main__' ].LANGUAGE
 
 # supported image types by the screensaver
 IMAGE_TYPES = ('.jpg', '.jpeg', '.png', '.tif', '.tiff', '.gif', '.pcx', '.bmp', '.tga', '.ico', '.nef')
-CACHEFOLDER = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode('utf-8')
+CACHEFOLDER = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('profile')).decode('utf-8')
 CACHEFILE   = os.path.join(CACHEFOLDER, '%s')
 
 def log(txt):
