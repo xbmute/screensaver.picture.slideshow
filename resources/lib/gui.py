@@ -20,10 +20,7 @@ from iptcinfovfs import IPTCInfo
 from XMPvfs import XMP_Tags
 from xml.dom.minidom import parse
 from utils import *
-if sys.version_info < (2, 7):
-    import simplejson
-else:
-    import json as simplejson
+import json
 
 ADDON    = sys.modules[ '__main__' ].ADDON
 ADDONID  = sys.modules[ '__main__' ].ADDONID
@@ -319,13 +316,14 @@ class Screensaver(xbmcgui.WindowXMLDialog):
             for method in methods:
                 json_query = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "' + method[0] + '", "params": {"properties": ["fanart"]}, "id": 1}')
                 json_query = unicode(json_query, 'utf-8', errors='ignore')
-                json_response = simplejson.loads(json_query)
+                json_response = json.loads(json_query)
                 if json_response.has_key('result') and json_response['result'] != None and json_response['result'].has_key(method[1]):
                     for item in json_response['result'][method[1]]:
                         if item['fanart']:
                             self.items.append([item['fanart'], item['label']])
         # randomize
         if self.slideshow_random == 'true':
+            random.seed()
             random.shuffle(self.items, random.random)
         return self.items
 
@@ -370,7 +368,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         # find the skindir
         json_query = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "Addons.GetAddonDetails", "params": {"addonid": "%s", "properties": ["path", "extrainfo"]}, "id": 1}' % SKINDIR)
         json_query = unicode(json_query, 'utf-8', errors='ignore')
-        json_response = simplejson.loads(json_query)
+        json_response = json.loads(json_query)
         if json_response.has_key('result') and (json_response['result'] != None) and json_response['result'].has_key('addon') and json_response['result']['addon'].has_key('path'):
             skinpath = json_response['result']['addon']['path']
         skinxml = xbmc.translatePath( os.path.join( skinpath, 'addon.xml' ).encode('utf-8') ).decode('utf-8')
