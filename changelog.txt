@@ -1,3 +1,6 @@
+v3.0.4
+- fix cache creation when an empty cache file is present.
+
 v3.0.3
 - language update
 - cosmetics
