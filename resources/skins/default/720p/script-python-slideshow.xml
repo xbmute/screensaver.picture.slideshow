@@ -218,11 +218,11 @@
 						<posx>85</posx>
 						<posy>12</posy>
 						<width>200</width>
-						<height>16</height>
+						<height>14</height>
 						<info>Player.Progress</info>
-						<texturebg border="6,0,6,0">screensaver-progress-back.png</texturebg>
+						<texturebg border="3" colordiffuse="FFFFFFFF">screensaver-progress.png</texturebg>
+						<midtexture colordiffuse="FF12B2E7">screensaver-progress.png</midtexture>
 						<lefttexture>-</lefttexture>
-						<midtexture border="6,0,6,0">screensaver-progress-mid.png</midtexture>
 						<righttexture>-</righttexture>
 						<overlaytexture>-</overlaytexture>
 					</control>
@@ -248,7 +248,7 @@
 			<height>461</height>
 			<aspectratio>keep</aspectratio>
 			<fadetime>0</fadetime>
-                        <texture>screensaver-splash.png</texture>
+			<texture>screensaver-splash.png</texture>
 			<animation effect="rotate" end="-360" center="auto" time="7000" loop="true" reversible="false" condition="True">Conditional</animation>
 			<animation type="WindowOpen">
 				<effect type="fade" start="0" end="100" time="1000" delay="500"/>
@@ -262,7 +262,7 @@
 			<posy>0</posy>
 			<width>1280</width>
 			<height>720</height>
-                        <texture>screensaver-black.png</texture>
+			<texture>screensaver-black.png</texture>
 			<colordiffuse>$INFO[Window.Property(SlideView.Dim)]</colordiffuse>
 		</control>
 	</controls>
