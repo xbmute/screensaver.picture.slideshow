@@ -65,6 +65,8 @@ def walk(path):
         if xbmcvfs.exists(xbmc.translatePath(folder)):
             # get all files and subfolders
             dirs,files = xbmcvfs.listdir(folder)
+            log('dirs: %s' % len(dirs))
+            log('files: %s' % len(files))
             # natural sort
             convert = lambda text: int(text) if text.isdigit() else text
             alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
@@ -95,4 +97,6 @@ def walk(path):
                 # recursively scan all subfolders
                 if not dirskip:
                     images += walk(os.path.join(folder,item,'')) # make sure paths end with a slash
+        else:
+            log('folder does not exist')
     return images
