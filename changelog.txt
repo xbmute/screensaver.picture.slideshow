@@ -1,3 +1,6 @@
+v4.1.2
+- delete empty cache files
+
 v4.1.1
 - don't crash when advancedsettings.xml is corrupt
 
