@@ -23,14 +23,14 @@ def checksum(path):
 
 def create_cache(path, hexfile):
     images = walk(path)
+    if not xbmcvfs.exists(CACHEFOLDER):
+        xbmcvfs.mkdir(CACHEFOLDER)
+    # remove old cache files
+    dirs, files = xbmcvfs.listdir(CACHEFOLDER)
+    for item in files:
+        if item != 'settings.xml':
+            xbmcvfs.delete(os.path.join(CACHEFOLDER,item))
     if images:
-        if not xbmcvfs.exists(CACHEFOLDER):
-            xbmcvfs.mkdir(CACHEFOLDER)
-        # remove old cache files
-        dirs, files = xbmcvfs.listdir(CACHEFOLDER)
-        for item in files:
-            if item != 'settings.xml':
-                xbmcvfs.delete(os.path.join(CACHEFOLDER,item))
         # create index file
         try:
             cache = xbmcvfs.File(CACHEFILE % hexfile, 'w')
