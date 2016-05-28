@@ -12,11 +12,12 @@
 					<animation type="Conditional" condition="StringCompare(Window.Property(SlideView.Fade11),1)">
 						<effect type="fade" start="100" end="0" time="1000"/>
 					</animation>
-					<control type="largeimage" id="5">
+					<control type="image" id="5">
 						<posx>0</posx>
 						<posy>0</posy>
 						<width>1280</width>
 						<height>720</height>
+						<texture background="true"></texture>
 						<aspectratio>scale</aspectratio>
 						<fadetime>0</fadetime>
 					</control>
@@ -25,11 +26,12 @@
 					<animation type="Conditional" condition="StringCompare(Window.Property(SlideView.Fade12),1)">
 						<effect type="fade" start="100" end="0" time="1000"/>
 					</animation>
-					<control type="largeimage" id="6">
+					<control type="image" id="6">
 						<posx>0</posx>
 						<posy>0</posy>
 						<width>1280</width>
 						<height>720</height>
+						<texture background="true"></texture>
 						<aspectratio>scale</aspectratio>
 						<fadetime>0</fadetime>
 					</control>
