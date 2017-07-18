@@ -21,6 +21,6 @@
 		<setting label="30023" type="bool" id="music" default="false"/>
 		<setting type="sep"/>
 		<setting label="30030" type="bool" id="notify" default="false"/>
-        <setting label="30031" type="text" id="posturl" default="http://127.0.0.1:8000/artnow"/>
+        	<setting label="30031" type="text" id="posturl" default="http://127.0.0.1:8000/artnow"/>
 	</category>
 </settings>
