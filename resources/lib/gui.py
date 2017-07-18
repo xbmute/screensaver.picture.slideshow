@@ -14,6 +14,7 @@
 # *  http://www.gnu.org/copyleft/gpl.html
 
 import random, copy, threading
+import urllib2
 import xbmcgui, xbmcaddon
 import EXIFvfs
 from iptcinfovfs import IPTCInfo
@@ -96,6 +97,8 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         self.slideshow_iptc   = ADDON.getSetting('iptc')
         self.slideshow_music  = ADDON.getSetting('music')
         self.slideshow_bg     = ADDON.getSetting('background')
+        self.slideshow_notify = ADDON.getSetting('notify')
+        self.slideshow_posturl = ADDON.getSetting('posturl')
         # select which image controls from the xml we are going to use
         if self.slideshow_scale == 'false':
             self.image1 = self.getControl(1)
@@ -281,6 +284,12 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                     order = [1,2]
                 # slideshow time in secs (we already slept for 1 second)
                 count = self.slideshow_time - 1
+                # notify remote service we are displaying this image
+                if self.slideshow_notify == 'true':
+                    try:
+                        urllib2.urlopen(url=self.slideshow_posturl, data=img[0]).read()
+                    except Exception:
+                        pass
                 # display the image for the specified amount of time
                 while (not self.Monitor.abortRequested()) and (not self.stop) and count > 0:
                     count -= 1

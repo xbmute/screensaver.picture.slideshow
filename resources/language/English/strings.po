@@ -122,3 +122,11 @@ msgstr ""
 msgctxt "#30029"
 msgid "Display background picture"
 msgstr ""
+
+msgctxt "#30030"
+msgid "Notify remote service"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Remote service POST URL"
+msgstr ""
